@@ -21,6 +21,7 @@
 #include <iostream>
 #include <sstream>
 #include "support.h"
+#include <cctype>
 
 #include <sys/types.h>
 

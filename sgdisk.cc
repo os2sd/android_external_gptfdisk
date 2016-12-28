@@ -18,7 +18,6 @@
 #include <errno.h>
 #include "gptcl.h"
 #include <fcntl.h>
-#include <unistd.h>
 
 using namespace std;
 
@@ -38,7 +37,7 @@ static int android_dump(char* device) {
     stringstream res;
 
     /* Silence noisy underlying library */
-    int stdout = dup(STDOUT_FILENO);
+    int std_out = dup(STDOUT_FILENO);
     int silence = open("/dev/null", 0);
     dup2(silence, STDOUT_FILENO);
     dup2(silence, STDERR_FILENO);
@@ -83,7 +82,7 @@ static int android_dump(char* device) {
 
     /* Write our actual output */
     string resString = res.str();
-    write(stdout, resString.c_str(), resString.length());
+    write(std_out, resString.c_str(), resString.length());
     return 0;
 }
 
